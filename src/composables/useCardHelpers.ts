@@ -28,6 +28,11 @@ export function useRetrigger() {
 
 export const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches
 
-export function saveReply(key: string, value: string) {
-  try { localStorage.setItem(key, value) } catch { /* private mode etc. */ }
+/** 'YYYY-MM-DD' → whole days from today (0 once the day has arrived) and a Chinese date label */
+export function countdownTo(date: string) {
+  const [y, m, d] = date.split('-').map(Number) as [number, number, number]
+  const today = new Date()
+  today.setHours(0, 0, 0, 0)
+  const days = Math.max(0, Math.ceil((new Date(y, m - 1, d).getTime() - today.getTime()) / 864e5))
+  return { days, label: `${y} 年 ${m} 月 ${d} 日` }
 }

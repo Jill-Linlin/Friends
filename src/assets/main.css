@@ -2,6 +2,8 @@
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html, body { margin: 0; min-height: 100%; }
+/* dark base so scene transitions never flash white */
+body { background: #0b0d1f; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
