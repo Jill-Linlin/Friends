@@ -1,4 +1,4 @@
-import { nextTick, onBeforeUnmount, ref } from 'vue'
+import { onBeforeUnmount } from 'vue'
 
 /** setTimeout that is cleared automatically when the component unmounts (e.g. switching styles mid-animation). */
 export function useTimers() {
@@ -12,18 +12,6 @@ export function useTimers() {
   const clearAll = () => { ids.forEach(clearTimeout); ids.clear() }
   onBeforeUnmount(clearAll)
   return { later, wait, clearAll }
-}
-
-/** Re-playable CSS animation class (the original `classList.remove → offsetWidth → add` trick). */
-export function useRetrigger() {
-  const active = ref(false)
-  const fire = async () => {
-    active.value = false
-    await nextTick()
-    void document.body.offsetWidth
-    active.value = true
-  }
-  return { active, fire }
 }
 
 export const prefersReducedMotion = () => matchMedia('(prefers-reduced-motion: reduce)').matches

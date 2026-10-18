@@ -1,9 +1,9 @@
-/* Global base shared by all card styles. Per-style colours/fonts live in each component's <style scoped>. */
+/* Global base. Toy Story colours/fonts live in toystory.css and each component's <style scoped>. */
 *, *::before, *::after { box-sizing: border-box; }
 [hidden] { display: none !important; }
 html, body { margin: 0; min-height: 100%; }
-/* dark base so scene transitions never flash white */
-body { background: #0b0d1f; }
+/* sky base so scene transitions never flash white */
+body { background: #9ecae1; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
