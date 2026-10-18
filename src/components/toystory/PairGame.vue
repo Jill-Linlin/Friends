@@ -2,7 +2,7 @@
 /** Flip-and-match with photos of her: each photo appears twice; matching every pair reveals the pair of hair clips. Emits `win`. */
 import { ref } from 'vue'
 import { toy as T } from '@/data/toyStoryContent'
-import { prefersReducedMotion, useTimers } from '@/composables/useCardHelpers'
+import { asset, prefersReducedMotion, useTimers } from '@/composables/useCardHelpers'
 
 const emit = defineEmits<{ win: [] }>()
 const reduce = prefersReducedMotion()
@@ -45,7 +45,7 @@ function flip(idx: number) {
       >
         <span class="in">
           <span class="back" aria-hidden="true">★</span>
-          <span class="front"><img :src="c.src" :alt="`${T.herName}的照片`" loading="eager"></span>
+          <span class="front"><img :src="asset(c.src)" :alt="`${T.herName}的照片`" loading="eager"></span>
         </span>
       </button>
     </div>

@@ -2,7 +2,7 @@
 /** The final treasure: Kitty's chest opens with a burst of stars → ring close-up → letter → closing line + gift list. */
 import { nextTick, onBeforeUnmount, ref } from 'vue'
 import { toy as T, isTodo } from '@/data/toyStoryContent'
-import { countdownTo, prefersReducedMotion, useTimers } from '@/composables/useCardHelpers'
+import { asset, countdownTo, prefersReducedMotion, useTimers } from '@/composables/useCardHelpers'
 import GiftIcon, { type GiftKind } from './GiftIcon.vue'
 
 defineProps<{ gifts: { kind: GiftKind; name: string }[] }>()
@@ -38,7 +38,7 @@ const musicMissing = ref(false)
 let audio: HTMLAudioElement | null = null
 function startMusic() {
   if (!M.src) return
-  audio = new Audio(M.src)
+  audio = new Audio(asset(M.src))
   audio.loop = M.loop
   audio.volume = M.volume
   audio.addEventListener('error', () => { musicMissing.value = true; playing.value = false })
@@ -88,7 +88,7 @@ function open() {
     <template v-else>
       <div class="spot" aria-hidden="true"></div>
       <div class="ring-frame">
-        <img v-if="R.photo" :src="R.photo" alt="終極寶藏：刻著 YOU'VE GOT A FRIEND IN ME 的戒指">
+        <img v-if="R.photo" :src="asset(R.photo)" alt="終極寶藏：刻著 YOU'VE GOT A FRIEND IN ME 的戒指">
         <span v-else class="ring-art" role="img" aria-label="終極寶藏：刻著 YOU'VE GOT A FRIEND IN ME 的金戒指"><GiftIcon kind="ring" /></span>
         <span class="shine" aria-hidden="true"></span>
         <i v-for="n in 6" :key="n" class="sparkle" :class="`s${n}`" aria-hidden="true">✦</i>

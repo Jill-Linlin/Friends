@@ -24,3 +24,6 @@ export function countdownTo(date: string) {
   const days = Math.max(0, Math.ceil((new Date(y, m - 1, d).getTime() - today.getTime()) / 864e5))
   return { days, label: `${y} 年 ${m} 月 ${d} 日` }
 }
+
+/** Files in public/ are written as '/xxx.jpg' in the content file; prefix the site's base path so they still load on GitHub Pages (/Friends/xxx.jpg). */
+export const asset = (path: string) => (path.startsWith('/') ? import.meta.env.BASE_URL + path.slice(1) : path)
